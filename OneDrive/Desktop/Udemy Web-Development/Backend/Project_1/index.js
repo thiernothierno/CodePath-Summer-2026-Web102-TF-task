@@ -14,17 +14,25 @@ const categories = ["Programming", "Misc", "Pun", "Dark", "Spooky"];
 const flags = ["nsfw", "religious", "political", "racist", "sexist", "explicit"];
 
 const random_categorie = categories[Math.floor(Math.random(categories) * categories.length)];
-console.log(random_categorie);
 const random_flag = flags[Math.floor(Math.random(flags) * flags.length)];
-console.log(random_flag)
 
-app.get("/random", async(req, res) =>{
+let result = "";
+
+app.get("/", async(req, res) =>{
+    res.render("index.ejs", {joke : result})
+    result = [];
+});
+
+
+app.post("/joke", async(req, res) => {
     try{
-        const response = await axios.get(`${JOKE_API}/${random_categorie}/${random_flag}`);
+        const category = req.body['category_type'];
+        const flag = req.body['flag_type'];
+        const response = await axios.get(`${JOKE_API}/${category}/${flag}`);
         const joke = response.data;
         if (joke['type'] === 'single'){
-            console.log(joke['joke']);
-            res.json(joke['joke'])
+            result += joke['joke'];
+            
         }
 
         else {
@@ -32,24 +40,63 @@ app.get("/random", async(req, res) =>{
             "setup" : joke['setup'],
             "delivery" : joke['delivery']
            }
-           console.log(data)
-           res.json(data)
+           result += joke['setup'];
+           result += joke['delivery'];
         }
         
+        res.redirect("/")
+        console.log(result)
+       
     } catch(error){
         res.status(500).json({message : "Error fetching data."})
     }   
-});
-
-app.get("/joke/:id", async(req, res) => {
-    try{
-        const response = await axios.get(`${JOKE_API}/Any`);
-
-    } catch(error){
-        res.status(500).json({message: "ID not found."})
-    }
 })
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// app.get("/joke/:type", async(req, res) => {
+//     try{
+//         const type = req.params.type;
+//         console.log(type);
+//         const response = await axios.get(`${JOKE_API}/${type}`);
+//         const joke = response.data;
+//         if (joke['type'] === 'single'){
+//             console.log(joke['joke']);
+//             res.json(joke['joke'])
+//         }
+
+//         else {
+//            const data = {
+//             "setup" : joke['setup'],
+//             "delivery" : joke['delivery']
+//            }
+//            console.log(data)
+//            res.json(data)
+//         }
+
+//     }catch(error){
+//          res.status(500).json({message : "Error fetching data."})
+//     }
+// })
 
 
 
