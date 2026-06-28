@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect} from "react";
 import CoinInfo from "./CoinInfo";
-import SideNav from "./SideNav";
+// import SideNav from "./SideNav";
 
 const URL =  "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=30&page=1";
 
@@ -70,7 +70,7 @@ function App(){
                 )) }
             </ul>
 
-        <SideNav />    
+        {/* <SideNav />     */}
         </div>
         
     )
