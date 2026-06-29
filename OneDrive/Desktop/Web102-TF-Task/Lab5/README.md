@@ -7,4 +7,4 @@
 <img width="1385" height="830" alt="lab5-overview-result" src="https://github.com/user-attachments/assets/726d95b7-9905-4bfa-b226-9de43f590814" />
 
 ## Search a specific crypto by typing the name or symbol of the crypto.
-<img width="1100" height="835" alt="search-crypto-by-name" src="https://github.com/user-attachments/assets/95de8379-d765-445c-b745-56e37cdafd76" />
+<img width="1118" height="471" alt="search-crypto-by-name" src="https://github.com/user-attachments/assets/05ca68f8-c205-46bf-9668-9931dbc5e189" />
